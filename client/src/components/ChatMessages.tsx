@@ -6,7 +6,6 @@ import { MemberExpression } from "@babel/types";
 interface Props {
   conversation: Conversation;
   userIndex: number;
-  message: Message;
   uuid: string;
 }
 
@@ -32,6 +31,8 @@ const ChatMessages: React.FunctionComponent<Props> = ({
   }
   const { title, messages } = conversation;
   const sortedMessages = sortMessages(messages);
+  const { bgColor, textColor } = getMessageStyle(userIndex, message);
+  const styleProp = { bgColor, textColor };
   return (
     <div>
       <h2>{title}</h2>
@@ -39,6 +40,7 @@ const ChatMessages: React.FunctionComponent<Props> = ({
         {sortedMessages.map(message => {
           return (
             <ChatMessage
+              styleProp={styleProp}
               userIndex={userIndex}
               key={message.id}
               text={message.text}

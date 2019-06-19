@@ -3,6 +3,7 @@ import React, { CSSProperties } from "react";
 interface Props {
   text: string;
   userIndex: number;
+  styleProp: string;
 }
 
 // const messageStyle = {
@@ -16,7 +17,12 @@ interface Props {
 //   margin: "10px"
 // };
 
-const ChatMessage: React.FunctionComponent<Props> = ({ text, userIndex }) => {
+const ChatMessage: React.FunctionComponent<Props> = ({
+  text,
+  userIndex,
+  styleProp
+}) => {
+  const { textColor, bgColor } = styleProp;
   return (
     <div>
       <div
@@ -27,7 +33,9 @@ const ChatMessage: React.FunctionComponent<Props> = ({ text, userIndex }) => {
           alignItems: "flex-end",
           padding: "10px",
           borderRadius: "10px",
-          margin: "10px"
+          margin: "10px",
+          color: textColor,
+          backgroundColor: bgColor
         }}
       >
         {text}
